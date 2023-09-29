@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "mlops-mipt"
+version = "0.1.0"
+description = ""
+authors = ["Nikolay Lubin <nklubin@avito.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+numpy = "^1.26.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
