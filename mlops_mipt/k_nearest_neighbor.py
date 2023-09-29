@@ -1,10 +1,13 @@
 import numpy as np
+
+
 """
 Credits: the original code belongs to Stanford CS231n course assignment1. Source link: http://cs231n.github.io/assignments2019/assignment1/
 """
 
+
 class KNearestNeighbor:
-    """ a kNN classifier with L2 distance """
+    """a kNN classifier with L2 distance"""
 
     def __init__(self):
         pass
@@ -45,7 +48,7 @@ class KNearestNeighbor:
         elif num_loops == 2:
             dists = self.compute_distances_two_loops(X)
         else:
-            raise ValueError('Invalid value %d for num_loops' % num_loops)
+            raise ValueError("Invalid value %d for num_loops" % num_loops)
 
         return self.predict_labels(dists, k=k)
 
@@ -68,7 +71,6 @@ class KNearestNeighbor:
         dists = np.zeros((num_test, num_train))
         for i in range(num_test):
             for j in range(num_train):
-
                 #####################################################################
                 # TODO:                                                             #
                 # Compute the l2 distance between the ith test point and the jth    #
@@ -76,7 +78,7 @@ class KNearestNeighbor:
                 # not use a loop over dimension, nor use np.linalg.norm().          #
                 #####################################################################
                 # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-                dists[i][j] = (sum((X[i] - self.X_train[j])**2))**0.5
+                dists[i][j] = (sum((X[i] - self.X_train[j]) ** 2)) ** 0.5
                 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -91,7 +93,6 @@ class KNearestNeighbor:
         num_train = self.X_train.shape[0]
         dists = np.zeros((num_test, num_train))
         for i in range(num_test):
-
             #######################################################################
             # TODO:                                                               #
             # Compute the l2 distance between the ith test point and all training #
@@ -99,7 +100,7 @@ class KNearestNeighbor:
             # Do not use np.linalg.norm().                                        #
             #######################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-            dists[i, :] = np.sqrt(np.sum((X[i] - self.X_train)**2, axis=1))
+            dists[i, :] = np.sqrt(np.sum((X[i] - self.X_train) ** 2, axis=1))
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -128,7 +129,7 @@ class KNearestNeighbor:
         #########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         X_quad = np.sum(X**2, axis=1).reshape(-1, 1)
-        X_train_quad = np.sum(self.X_train ** 2, axis=1)
+        X_train_quad = np.sum(self.X_train**2, axis=1)
         X_dot_X_train = np.matmul(X, self.X_train.T)
         dists = np.sqrt(X_quad - 2 * X_dot_X_train + X_train_quad)
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
